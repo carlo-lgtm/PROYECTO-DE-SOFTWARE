@@ -1,0 +1,210 @@
+Diagrama de clase
+        Vehículo
++-------------------------+
+| - id_vehiculo: int       |
+| - marca: string          |
+| - modelo: string         |
+| - año: int               |
+| - precio_diario: float   |
++-------------------------+
+| + obtener_id(): int      |
+| + obtener_marca(): string|
+| + obtener_modelo(): string |
+| + obtener_año(): int     |
+| + obtener_precio_diario(): float |
+| + establecer_marca(marca: string): void |
+| + establecer_modelo(modelo: string): void |
+| + establecer_año(año: int): void |
+| + establecer_precio_diario(precio: float): void |
++-------------------------+
+
+        Cliente
++-------------------------+
+| - id_cliente: int        |
+| - nombre: string         |
+| - apellido: string       |
+| - dirección: string      |
+| - telefono: string       |
+| - correo_electronico: string |
++-------------------------+
+| + obtener_id(): int      |
+| + obtener_nombre(): string |
+| + obtener_apellido(): string |
+| + obtener_direccion(): string |
+| + obtener_telefono(): string |
+| + obtener_correo_electronico(): string |
+| + establecer_nombre(nombre: string): void |
+| + establecer_apellido(apellido: string): void |
+| + establecer_direccion(direccion: string): void |
+| + establecer_telefono(telefono: string): void |
+| + establecer_correo_electronico(correo: string): void |
++-------------------------+
+
+        Alquiler
++-------------------------+
+| - id_alquiler: int       |
+| - fecha_inicio: datetime |
+| - fecha_fin: datetime    |
++-------------------------+
+| + obtener_id(): int      |
+| + obtener_fecha_inicio(): datetime |
+| + obtener_fecha_fin(): datetime |
+| + establecer_fecha_inicio(fecha: datetime): void |
+| + establecer_fecha_fin(fecha: datetime): void |
++-------------------------+
+
+
+Diagrama e-r
+Vehículo (ID_Vehículo, Marca, Modelo, Año, Precio_Diario, Tipo_Vehículo)
+Cliente (ID_Cliente, Nombre, Apellido, Dirección, Teléfono, Correo_Electrónico)
+Alquiler (ID_Alquiler, Fecha_Inicio, Fecha_Fin, ID_Cliente, ID_Vehículo)
+Mantenimiento (ID_Mantenimiento, Descripción, Fecha, Costo, ID_Vehículo)
+
+
+DIAGRAMA DE ARQUITECTURA
+                                      +-------------+
+                                      |Base de Datos|
+                                      +-------------+
+                                             |
+                                             |
+                                             |
+                                    +------------------+
+                                    |Servidor de       |
+                                    |Aplicaciones      |
+                                    +------------------+
+                                             |
+                                             |
+                          +------------------+------------------+
+                          |                                         |
+                          |                                         |
+                 +-------------+                             +-------------+
+                 |Aplicación   |                             |Aplicación   |
+                 |Móvil (iOS)  |                             |Móvil (Android)|
+                 +-------------+                             +-------------+
+
+
+Documentación de la Aplicación Móvil de Vehículos
+Visión general
+La aplicación móvil de vehículos es una aplicación móvil diseñada para que los usuarios puedan buscar, reservar y gestionar vehículos de alquiler. La aplicación proporciona una interfaz intuitiva para que los usuarios puedan ver los vehículos disponibles, ver la información detallada del vehículo, realizar reservas y administrar sus reservas existentes.
+Requisitos del sistema
+Ios
+Conexión a Internet
+GPS habilitado
+Cuenta de usuario
+Funcionalidades
+La aplicación móvil de vehículos tiene las siguientes funcionalidades principales:
+Registro y autenticación de usuarios
+Búsqueda de vehículos por ubicación y fecha
+Visualización de información detallada del vehículo
+Reserva de vehículos
+Cancelación y modificación de reservas
+Visualización de historial de reservas
+Pago en línea de reservas
+Diseño de la interfaz de usuario
+La aplicación móvil de vehículos tiene un diseño intuitivo y fácil de usar para los usuarios. La interfaz de usuario está diseñada para ser atractiva y fácil de entender. Algunas de las características del diseño son:
+Pantalla de inicio: se muestra la lista de vehículos disponibles para alquilar.
+Filtro de búsqueda: los usuarios pueden filtrar por tipo de vehículo, fecha y ubicación.
+Información detallada del vehículo: los usuarios pueden ver detalles del vehículo como características, especificaciones, fotos y reseñas.
+Reserva de vehículos: los usuarios pueden reservar un vehículo seleccionando la fecha y hora de recogida y devolución.
+Historial de reservas: los usuarios pueden ver su historial de reservas y cancelar o modificar reservas existentes.
+Pago en línea: los usuarios pueden pagar sus reservas directamente desde la aplicación.
+Tecnologías utilizadas
+Lenguaje de programación: Swift (iOS) / Java (Android)
+Framework de desarrollo: React Native
+Servidor de aplicaciones: Node.js
+Base de datos: MongoDB
+Conclusiones
+La aplicación móvil de vehículos proporciona una interfaz fácil de usar para que los usuarios puedan buscar y reservar vehículos de alquiler. La aplicación está diseñada para ser atractiva y fácil de entender para los usuarios. El uso de tecnologías modernas como React Native y Node.js asegura que la aplicación sea escalable y fácil de mantener.
+
+class Vehiculo:
+    def __init__(self, marca, modelo, precio):
+        self.marca = marca
+        self.modelo = modelo
+        self.precio = precio
+
+
+class Venta:
+    def __init__(self):
+        self.vehiculos = []
+
+    def agregar_vehiculo(self, vehiculo):
+        self.vehiculos.append(vehiculo)
+
+    def mostrar_vehiculos(self):
+        if self.vehiculos:
+            print("Lista de vehículos:")
+            for vehiculo in self.vehiculos:
+                print(f"Marca: {vehiculo.marca}, Modelo: {vehiculo.modelo}, Precio: ${vehiculo.precio}")
+        else:
+            print("No hay vehículos registrados.")
+
+    def buscar_vehiculo(self, modelo):
+        for vehiculo in self.vehiculos:
+            if vehiculo.modelo == modelo:
+                return vehiculo
+        return None
+
+    def vender_vehiculo(self, modelo):
+        vehiculo = self.buscar_vehiculo(modelo)
+        if vehiculo:
+            self.vehiculos.remove(vehiculo)
+            print(f"Vehículo vendido: Marca: {vehiculo.marca}, Modelo: {vehiculo.modelo}, Precio: ${vehiculo.precio}")
+        else:
+            print("El vehículo no se encuentra disponible.")
+
+# Ejemplo de uso
+venta = Venta()
+
+# Agregar vehículos
+vehiculo1 = Vehiculo("Toyota", "Corolla", 20000)
+venta.agregar_vehiculo(vehiculo1)
+
+vehiculo2 = Vehiculo("Honda", "Civic", 18000)
+venta.agregar_vehiculo(vehiculo2)
+
+# Mostrar vehículos
+venta.mostrar_vehiculos()
+
+# Buscar vehículo por modelo
+modelo_buscar = "Civic"
+vehiculo_buscar = venta.buscar_vehiculo(modelo_buscar)
+if vehiculo_buscar:
+    print(f"Vehículo encontrado: Marca: {vehiculo_buscar.marca}, Modelo: {vehiculo_buscar.modelo}, Precio: ${vehiculo_buscar.precio}")
+else:
+    print(f"No se encontró un vehículo con el modelo: {modelo_buscar}")
+
+# Vender vehículo
+modelo_vender = "Corolla"
+venta.vender_vehiculo(modelo_vender)
+
+# Mostrar vehículos actualizados
+venta.mostrar_vehiculos()
+
+Diagrama de componentes
++---------------------------------+
+|        Sistema de Ventas        |
++---------------------------------+
+|                                 |
+|   +-------------------------+   |
+|   |     Interfaz de Usuario |   |
+|   +-------------------------+   |
+|   |                         |   |
+|   +-------------------------+   |
+|                                 |
+|   +-------------------------+   |
+|   | Lógica de Negocio |   |
+|   +-------------------------+   |
+|   |                         |   |
+|   +-------------------------+   |
+|                                 |
+|   +-------------------------+   |
+|   |    Base de Datos        |   |
+|   +-------------------------+   |
+|                                 |
+|   +-------------------------+   |
+|   |      Servicios Web      |   |
+|   +-------------------------+   |
+
+
+
+

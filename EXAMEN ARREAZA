@@ -1,0 +1,48 @@
+# PROYECTO-DE-SOFTWARE
+CARLOS ARREAZA
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+    private Button startButton;
+    private Button stopButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Obtener referencias a los botones en el layout
+        startButton = findViewById(R.id.start_button);
+        stopButton = findViewById(R.id.stop_button);
+
+        // Establecer listeners para los botones
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startCar();
+            }
+        });
+
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopCar();
+            }
+        });
+    }
+
+    private void startCar() {
+        // Lógica para encender el automóvil
+        Toast.makeText(this, "El automóvil está encendido", Toast.LENGTH_SHORT).show();
+    }
+
+    private void stopCar() {
+        // Lógica para apagar el automóvil
+        Toast.makeText(this, "El automóvil está apagado", Toast.LENGTH_SHORT).show();
+    }
+}
